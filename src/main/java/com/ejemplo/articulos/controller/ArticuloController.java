@@ -54,4 +54,9 @@ public class ArticuloController {
         articuloService.eliminarArticulo(id);
         return ResponseEntity.noContent().build();
     }
+    
+    @GetMapping("/buscar")
+    public List<Articulo> buscarPorNombre(@RequestParam String nombre) {
+    return articuloService.buscarPorNombre(nombre);
+}
 }

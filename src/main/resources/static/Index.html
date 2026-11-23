@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Artículos</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Gestión de Artículos</h1>
+
+        <section class="card">
+            <h2 id="form-titulo">Nuevo Artículo</h2>
+            <form id="articulo-form">
+                <input type="hidden" id="articulo-id">
+                <input type="text" id="nombre" placeholder="Nombre del artículo" required>
+                <input type="number" id="precio" placeholder="Precio" step="0.01" min="0" required>
+                <input type="text" id="imagen" placeholder="URL de imagen (opcional)">
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="btn-guardar">Guardar</button>
+                    <button type="button" class="btn-secondary oculto" id="btn-cancelar">Cancelar</button>
+                </div>
+            </form>
+        </section>
+
+    
+
+        <section class="card">
+            <h2>Listado</h2>
+             <div class="buscador">
+    <input type="text" id="input-buscar" placeholder="Buscar artículo por nombre...">
+    <button type="button" class="btn-primary" id="btn-buscar">Buscar</button>
+    <button type="button" class="btn-secondary" id="btn-limpiar">Limpiar</button>
+       </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-body"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="js/app.js" defer></script>
+</body>
+</html>

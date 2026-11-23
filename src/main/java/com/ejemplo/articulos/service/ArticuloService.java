@@ -12,4 +12,5 @@ public interface ArticuloService {
     Articulo guardarArticulo(Articulo articulo);
     Articulo actualizarArticulo(Long id, Articulo articulo);
     void eliminarArticulo(Long id);
+    List<Articulo> buscarPorNombre(String nombre);
 }
