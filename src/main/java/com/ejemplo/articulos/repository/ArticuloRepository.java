@@ -27,9 +27,13 @@ public interface ArticuloRepository extends JpaRepository<Articulo, Long> {
     // existsById(Long id)      -> Verifica si existe un ID
 
     // ===============================================
-    // 🛠️ MÉTODOS PERSONALIZADOS (se generan por nombre)
+    //  MÉTODOS PERSONALIZADOS (se generan por nombre)
     // ===============================================
       List<Articulo> findByNombreContainingIgnoreCase(String nombre);
+    List<Articulo> findByPrecioGreaterThan(Double precio);
+    List<Articulo> findByPrecioBetween(Double min, Double max);
+    List<Articulo> findAllByOrderByPrecioAsc();
+    List<Articulo> findByNombreAndPrecioGreaterThan(String nombre, Double precio);
 }
 
 

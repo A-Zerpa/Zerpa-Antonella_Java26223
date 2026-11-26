@@ -104,12 +104,24 @@ img {
     }
 }
 
-.buscador {
+.filtros {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.buscador,
+.filtro-precio {
     display: flex;
     gap: 8px;
-    margin-bottom: 16px;
+    flex-wrap: wrap;
 }
 
 .buscador input {
     flex: 1;
+}
+
+.filtro-precio input {
+    width: 150px;
 }

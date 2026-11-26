@@ -43,4 +43,24 @@ public class ArticuloServiceImpl implements ArticuloService {
 public List<Articulo> buscarPorNombre(String nombre) {
     return articuloRepository.findByNombreContainingIgnoreCase(nombre);
 }
+
+@Override
+public List<Articulo> buscarPorPrecioMayorA(Double precio) {
+    return articuloRepository.findByPrecioGreaterThan(precio);
+}
+
+@Override
+public List<Articulo> buscarPorRangoDePrecio(Double min, Double max) {
+    return articuloRepository.findByPrecioBetween(min, max);
+}
+
+@Override
+public List<Articulo> listarOrdenadosPorPrecioAsc() {
+    return articuloRepository.findAllByOrderByPrecioAsc();
+}
+
+@Override
+public List<Articulo> buscarPorNombreYPrecioMayorA(String nombre, Double precio) {
+    return articuloRepository.findByNombreAndPrecioGreaterThan(nombre, precio);
+}
 }

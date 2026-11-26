@@ -13,4 +13,9 @@ public interface ArticuloService {
     Articulo actualizarArticulo(Long id, Articulo articulo);
     void eliminarArticulo(Long id);
     List<Articulo> buscarPorNombre(String nombre);
+
+    List<Articulo> buscarPorPrecioMayorA(Double precio);
+List<Articulo> buscarPorRangoDePrecio(Double min, Double max);
+List<Articulo> listarOrdenadosPorPrecioAsc();
+List<Articulo> buscarPorNombreYPrecioMayorA(String nombre, Double precio);
 }

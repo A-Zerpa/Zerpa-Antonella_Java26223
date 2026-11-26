@@ -8,8 +8,13 @@ const inputPrecio = document.getElementById('precio');
 const inputImagen = document.getElementById('imagen');
 const formTitulo = document.getElementById('form-titulo');
 const btnCancelar = document.getElementById('btn-cancelar');
+
 const inputBuscar = document.getElementById('input-buscar');
 const btnBuscar = document.getElementById('btn-buscar');
+const inputPrecioMin = document.getElementById('precio-min');
+const inputPrecioMax = document.getElementById('precio-max');
+const btnFiltrarPrecio = document.getElementById('btn-filtrar-precio');
+const btnOrdenarPrecio = document.getElementById('btn-ordenar-precio');
 const btnLimpiar = document.getElementById('btn-limpiar');
 
 let articulosCache = [];
@@ -129,10 +134,6 @@ function resetForm() {
     btnCancelar.classList.add('oculto');
 }
 
-btnCancelar.addEventListener('click', resetForm);
-
-cargarArticulos();
-
 async function buscarArticulos() {
     const texto = inputBuscar.value.trim();
     if (!texto) {
@@ -152,7 +153,44 @@ async function buscarArticulos() {
     }
 }
 
+async function filtrarPorPrecio() {
+    const min = inputPrecioMin.value;
+    const max = inputPrecioMax.value;
+
+    if (min === '' || max === '') {
+        alert('Ingresá un precio mínimo y un precio máximo.');
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_URL}/precio-entre?min=${encodeURIComponent(min)}&max=${encodeURIComponent(max)}`);
+        if (!res.ok) throw new Error('Error al filtrar por precio');
+
+        articulosCache = await res.json();
+        renderizarTabla(articulosCache);
+    } catch (error) {
+        console.error(error);
+        alert('Ocurrió un error al filtrar por precio.');
+    }
+}
+
+async function ordenarPorPrecio() {
+    try {
+        const res = await fetch(`${API_URL}/ordenados-precio`);
+        if (!res.ok) throw new Error('Error al ordenar por precio');
+
+        articulosCache = await res.json();
+        renderizarTabla(articulosCache);
+    } catch (error) {
+        console.error(error);
+        alert('Ocurrió un error al ordenar.');
+    }
+}
+
+btnCancelar.addEventListener('click', resetForm);
 btnBuscar.addEventListener('click', buscarArticulos);
+btnFiltrarPrecio.addEventListener('click', filtrarPorPrecio);
+btnOrdenarPrecio.addEventListener('click', ordenarPorPrecio);
 
 inputBuscar.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') buscarArticulos();
@@ -160,5 +198,9 @@ inputBuscar.addEventListener('keydown', (e) => {
 
 btnLimpiar.addEventListener('click', () => {
     inputBuscar.value = '';
+    inputPrecioMin.value = '';
+    inputPrecioMax.value = '';
     cargarArticulos();
 });
+
+cargarArticulos();

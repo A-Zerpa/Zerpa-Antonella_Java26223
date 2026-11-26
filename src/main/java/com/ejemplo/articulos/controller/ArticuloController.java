@@ -59,4 +59,24 @@ public class ArticuloController {
     public List<Articulo> buscarPorNombre(@RequestParam String nombre) {
     return articuloService.buscarPorNombre(nombre);
 }
+
+@GetMapping("/precio-mayor")
+public List<Articulo> buscarPorPrecioMayorA(@RequestParam Double precio) {
+    return articuloService.buscarPorPrecioMayorA(precio);
+}
+
+@GetMapping("/precio-entre")
+public List<Articulo> buscarPorRangoDePrecio(@RequestParam Double min, @RequestParam Double max) {
+    return articuloService.buscarPorRangoDePrecio(min, max);
+}
+
+@GetMapping("/ordenados-precio")
+public List<Articulo> listarOrdenadosPorPrecioAsc() {
+    return articuloService.listarOrdenadosPorPrecioAsc();
+}
+
+@GetMapping("/buscar-combinado")
+public List<Articulo> buscarCombinado(@RequestParam String nombre, @RequestParam Double precio) {
+    return articuloService.buscarPorNombreYPrecioMayorA(nombre, precio);
+}
 }

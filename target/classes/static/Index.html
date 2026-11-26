@@ -28,11 +28,20 @@
 
         <section class="card">
             <h2>Listado</h2>
-             <div class="buscador">
-    <input type="text" id="input-buscar" placeholder="Buscar artículo por nombre...">
-    <button type="button" class="btn-primary" id="btn-buscar">Buscar</button>
-    <button type="button" class="btn-secondary" id="btn-limpiar">Limpiar</button>
-       </div>
+             <div class="filtros">
+    <div class="buscador">
+        <input type="text" id="input-buscar" placeholder="Buscar artículo por nombre...">
+        <button type="button" class="btn-primary" id="btn-buscar">Buscar</button>
+    </div>
+
+    <div class="filtro-precio">
+        <input type="number" id="precio-min" placeholder="Precio mínimo" step="0.01" min="0">
+        <input type="number" id="precio-max" placeholder="Precio máximo" step="0.01" min="0">
+        <button type="button" class="btn-primary" id="btn-filtrar-precio">Filtrar precio</button>
+        <button type="button" class="btn-secondary" id="btn-ordenar-precio">Ordenar por precio (Menor a mayor)</button>
+        <button type="button" class="btn-secondary" id="btn-limpiar">Limpiar</button>
+    </div>
+</div>
             <table>
                 <thead>
                     <tr>
